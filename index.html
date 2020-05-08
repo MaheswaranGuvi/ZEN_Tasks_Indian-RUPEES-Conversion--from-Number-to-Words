@@ -1,0 +1,45 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Indian RUPEES ( &#x20B9; ) - from Number to Words </title>
+
+<script type="text/javascript">
+
+var oneTill19 = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
+
+var twentyTill90 = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
+
+function intoWords (numRS) {
+    if ((numRS = numRS.toString()).length > 9)
+	document.getElementById('rsWords').innerHTML = "OVERFLOW";
+    else
+    {
+    n = ('000000000' + numRS).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    if (!n) return; var txtWords = '';
+    txtWords += (n[1] != 0) ? (oneTill19[Number(n[1])] || twentyTill90[n[1][0]] + ' ' + oneTill19[n[1][1]]) + 'crore ' : '';
+    txtWords += (n[2] != 0) ? (oneTill19[Number(n[2])] || twentyTill90[n[2][0]] + ' ' + oneTill19[n[2][1]]) + 'lakh ' : '';
+    txtWords += (n[3] != 0) ? (oneTill19[Number(n[3])] || twentyTill90[n[3][0]] + ' ' + oneTill19[n[3][1]]) + 'thousand ' : '';
+    txtWords += (n[4] != 0) ? (oneTill19[Number(n[4])] || twentyTill90[n[4][0]] + ' ' + oneTill19[n[4][1]]) + 'hundred ' : '';
+    txtWords += (n[5] != 0) ? ((txtWords != '') ? 'and ' : '') + (oneTill19[Number(n[5])] || twentyTill90[n[5][0]] + ' ' + oneTill19[n[5][1]]) + 'only ' : '';
+    document.getElementById('rsWords').innerHTML = txtWords;
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Indian RUPEES ( &#x20B9; ) - from Number to Words </h1>
+
+Give in Digits: <input id="rsDigits" type="text" />
+<br><br>
+<button onclick="intoWords(document.getElementById('rsDigits').value)">Rupees in Words</button>
+<br><br>
+<div id="rsWords"></div>
+
+</body>
+
+</html>
